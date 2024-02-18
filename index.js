@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     if (req.method === 'GET') {
-        fetch('https://api.country.is/')
+        fetch(`https://api.iplocation.net/?ip=${req.socket.remoteAddress}`)
             .then(response => response.json())
             .then(response => sendResponse(res, 200, 'application/json', JSON.stringify(response)))
             .catch(e => sendResponse(res, 404, 'text/plain', 'Something went wrong'));
